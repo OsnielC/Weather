@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/styles.css">
+    <title>Clima</title>
+</head>
+<body>
+    <header>
+        <h1>Clima</h1>
+        <form id="newWeatherForm" action="javascript:void(0);" method="post" onsubmit="application.Search()">
+            <h2>Latitud:</h2>
+            <input type="text" name="latitud" id="latitud" placeholder="latitud...">
+            <h2>Longitud:</h2>
+            <input type="text" name="longitud" id="longitud" placeholder="longitud...">
+            <button type="submit" id="weatherSubmit">+</button>
+        </form>
+    </header>
+    <main>
+        <div id="map"></div>
+        <section class="weatherList">
+        </section>
+    </main>
+    <script src="./js/functions.js"></script>
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxXEdoSj6wgM2mZSD_iQVQncJZqVgxJlY&callback=initMap&v=weekly&channel=2"
+    async
+    ></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    
+</body>
+</html>
