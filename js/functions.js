@@ -21,15 +21,6 @@ const application = new function(){
 
             console.log(data)
             let icon = data.current.weather[0].icon
-            let icon2 = data.daily[1].weather[0].icon
-            let icon3 = data.daily[2].weather[0].icon
-            let icon4 = data.daily[3].weather[0].icon
-            let icon5 = data.daily[4].weather[0].icon
-            const dt = new Date (data.current.dt*1000)
-            const dt2 = new Date (data.daily[1].dt*1000)
-            const dt3 = new Date (data.daily[2].dt*1000)
-            const dt4 = new Date (data.daily[3].dt*1000)
-            const dt5 = new Date (data.daily[4].dt*1000)
             let dataHtml ='';
             dataHtml += '<div class="cards">';
             dataHtml += '<div class="date">Actual</div>';
@@ -40,57 +31,20 @@ const application = new function(){
             dataHtml += '<div class="weather">Humedad: '+ data.current.humidity+'%</div>';
             dataHtml += '<div class="weather">Uv: '+ data.current.uvi +'%</div>';
             dataHtml += '</div>';
-            //card2
-            dataHtml += '<div class="cards">';
-            dataHtml += '<div class="date">'+ dt2.toDateString()+'</div>';
-            dataHtml += '<div class="weather"><img class="image" src="http://openweathermap.org/img/wn/'+icon2+'@2x.png" alt="image"></div>';
-            dataHtml += '<div class="temp">'+ data.daily[1].temp.day +' &degC</div>';
-            dataHtml += '<div class="weather">'+data.daily[1].weather[0].description+'</div>';
-            dataHtml += '<div class="weather">Minima: '+data.daily[1].temp.min+' &degC</div>';
-            dataHtml += '<div class="weather">Máxima: '+data.daily[1].temp.max+' &degC</div>';
-            dataHtml += '<div class="weather"> Sensación termica: '+ data.daily[1].feels_like.day +' &degC</div>';
-            dataHtml += '<div class="weather">Humedad: '+ data.daily[1].humidity+'%</div>';
-            dataHtml += '<div class="weather">Uv: '+ data.daily[1].uvi +'%</div>';
-            dataHtml += '</div>';
-
-            //card3
-            dataHtml += '<div class="cards">';
-            dataHtml += '<div class="date">'+ dt3.toDateString()+'</div>';
-            dataHtml += '<div class="weather"><img class="image" src="http://openweathermap.org/img/wn/'+icon3+'@2x.png" alt="image"></div>';
-            dataHtml += '<div class="temp">'+ data.daily[2].temp.day +' &degC</div>';
-            dataHtml += '<div class="weather">'+data.daily[2].weather[0].description+'</div>';
-            dataHtml += '<div class="weather">Minima: '+data.daily[2].temp.min+' &degC</div>';
-            dataHtml += '<div class="weather">Máxima: '+data.daily[2].temp.max+' &degC</div>';
-            dataHtml += '<div class="weather"> Sensación termica: '+ data.daily[2].feels_like.day +' &degC</div>';
-            dataHtml += '<div class="weather">Humedad: '+ data.daily[2].humidity+'%</div>';
-            dataHtml += '<div class="weather">Uv: '+ data.daily[2].uvi +'%</div>';
-            dataHtml += '</div>';
-
-            //card4
-            dataHtml += '<div class="cards">';
-            dataHtml += '<div class="date">'+ dt4.toDateString()+'</div>';
-            dataHtml += '<div class="weather"><img class="image" src="http://openweathermap.org/img/wn/'+icon4+'@2x.png" alt="image"></div>';
-            dataHtml += '<div class="temp">'+ data.daily[3].temp.day +' &degC</div>';
-            dataHtml += '<div class="weather">'+data.daily[3].weather[0].description+'</div>';
-            dataHtml += '<div class="weather">Minima: '+data.daily[3].temp.min+' &degC</div>';
-            dataHtml += '<div class="weather">Máxima: '+data.daily[3].temp.max+' &degC</div>';
-            dataHtml += '<div class="weather"> Sensación termica: '+ data.daily[3].feels_like.day +' &degC</div>';
-            dataHtml += '<div class="weather">Humedad: '+ data.daily[3].humidity+'%</div>';
-            dataHtml += '<div class="weather">Uv: '+ data.daily[3].uvi +'%</div>';
-            dataHtml += '</div>';
-
-            //card6
-            dataHtml += '<div class="cards">';
-            dataHtml += '<div class="date">'+ dt5.toDateString()+'</div>';
-            dataHtml += '<div class="weather"><img class="image" src="http://openweathermap.org/img/wn/'+icon5+'@2x.png" alt="image"></div>';
-            dataHtml += '<div class="temp">'+ data.daily[4].temp.day +' &degC</div>';
-            dataHtml += '<div class="weather">'+data.daily[4].weather[0].description+'</div>';
-            dataHtml += '<div class="weather">Minima: '+data.daily[4].temp.min+' &degC</div>';
-            dataHtml += '<div class="weather">Máxima: '+data.daily[4].temp.max+' &degC</div>';
-            dataHtml += '<div class="weather"> Sensación termica: '+ data.daily[4].feels_like.day +' &degC</div>';
-            dataHtml += '<div class="weather">Humedad: '+ data.daily[4].humidity+'%</div>';
-            dataHtml += '<div class="weather">Uv: '+ data.daily[4].uvi +'%</div>';
-            dataHtml += '</div>';
+            //cards
+            for (let i = 1; i < 5; i++) {
+                dataHtml += '<div class="cards">';
+                dataHtml += '<div class="date">'+ new Date (data.daily[i].dt*1000).toDateString()+'</div>';
+                dataHtml += '<div class="weather"><img class="image" src="http://openweathermap.org/img/wn/'+data.daily[i].weather[0].icon+'@2x.png" alt="image"></div>';
+                dataHtml += '<div class="temp">'+ data.daily[i].temp.day +' &degC</div>';
+                dataHtml += '<div class="weather">'+data.daily[i].weather[0].description+'</div>';
+                dataHtml += '<div class="weather">Minima: '+data.daily[i].temp.min+' &degC</div>';
+                dataHtml += '<div class="weather">Máxima: '+data.daily[i].temp.max+' &degC</div>';
+                dataHtml += '<div class="weather"> Sensación termica: '+ data.daily[i].feels_like.day +' &degC</div>';
+                dataHtml += '<div class="weather">Humedad: '+ data.daily[i].humidity+'%</div>';
+                dataHtml += '<div class="weather">Uv: '+ data.daily[i].uvi +'%</div>';
+                dataHtml += '</div>';
+            }
             this.card.innerHTML = dataHtml;
         }
         catch(error){
